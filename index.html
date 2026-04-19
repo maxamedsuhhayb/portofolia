@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Portfolio</title>
+    <style>
+        /* --- CSS STYLING --- */
+        :root {
+            --primary-color: #2563eb;
+            --dark-bg: #0f172a;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
+            color: white;
+            padding: 6rem 1rem;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: -3rem auto 4rem;
+            padding: 0 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0; /* Waxaa soo bandhigaya JS */
+            transform: translateY(30px);
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 220px;
+            position: relative;
+            background: #e2e8f0;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to my page</h1>
+        <p>Below you can find all my professional certificates and academic achievements.</p>
+    </header>
+
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/400x250/3b82f6/ffffff?text=Web+Development" alt="Certificate">
+                </div>
+                <div class="card-content">
+                    <h3>Responsive Web Design</h3>
+                    <p>Verified by freeCodeCamp</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/400x250/1e293b/ffffff?text=Technical+Docs" alt="Certificate">
+                </div>
+                <div class="card-content">
+                    <h3>Technical Documentation</h3>
+                    <p>Professional Certification</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/400x250/2563eb/ffffff?text=Design+Skills" alt="Certificate">
+                </div>
+                <div class="card-content">
+                    <h3>Graphic & Layout Design</h3>
+                    <p>Academic Excellence</p>
+                    <a href="#" class="btn">View Certificate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 My Portfolio | Built with Passion</p>
+    </footer>
+
+    <script>
+        // Waxaan dhisaynaa nidaamka "Scroll Reveal"
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        // U sheeg JS inuu eego kaadh kasta
+        document.querySelectorAll('.card').forEach((card) => {
+            observer.observe(card);
+        });
+
+        // Hover Effect dheeraad ah oo badhanka ah
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseover', () => {
+                console.log("Exploring certificate...");
+            });
+        });
+    </script>
+
+</body>
+</html>
